@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:todo_app/constants/color.dart';
+import 'package:todo_app/constants/tasktype.dart';
+import 'package:todo_app/model/task.dart';
 import 'package:todo_app/screens/add_new_task.dart';
 import 'package:todo_app/todoItem.dart';
 
@@ -14,8 +16,22 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    List<String> todo = ["Study Lessons", "Go to party", "Run 5K"];
-    List<String> completed = ["Game meetup", "Take out tash"];
+    List<Task> todo = [
+      Task(
+          type: TaskType.note,
+          title: "Study Lesson",
+          description: "description",
+          isCompleted: true)
+    ];
+
+    List<Task> completed = [
+      Task(
+          type: TaskType.note,
+          title: "Game meetup",
+          description: "Game meetup",
+          isCompleted: true)
+    ];
+
     double deviceHeight = MediaQuery.of(context).size.height;
     double deviceWidth = MediaQuery.of(context).size.width;
     return MaterialApp(
@@ -71,7 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         itemCount: todo.length,
                         itemBuilder: (context, index) {
                           return Todoitem(
-                            title: todo[index],
+                            task: todo[index],
                           );
                         }),
                   ),
@@ -97,7 +113,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         itemCount: completed.length,
                         itemBuilder: (context, index) {
                           return Todoitem(
-                            title: completed[index],
+                            task: completed[index],
                           );
                         }),
                   ),
