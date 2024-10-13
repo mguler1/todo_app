@@ -23,6 +23,11 @@ class _HomeScreenState extends State<HomeScreen> {
           description: "description",
           isCompleted: true)
     ];
+    void addNewTask(Task newTask) {
+      setState(() {
+        todo.add(newTask);
+      });
+    }
 
     List<Task> completed = [
       Task(
@@ -122,7 +127,9 @@ class _HomeScreenState extends State<HomeScreen> {
               ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const AddNewTaskScreen(),
+                      builder: (context) => AddNewTaskScreen(
+                        addNewTask: (newTask) => addNewTask(newTask),
+                      ),
                     ));
                   },
                   child: const Text("Add New Task"))
